@@ -1,0 +1,55 @@
+{
+    "engineName": "ekw-client-pet-search-engine",
+    "endpointBase": "https://rlwtest-elastic.ent.southcentralus.azure.elastic-cloud.com",
+    "searchKey": "search-gh69eqyn8tbewmuqihnmkqjd",
+    "resultFields": [
+      "preferred_greeting",
+      "is_active",
+      "zip_plus_6",
+      "updated_by_user_id",
+      "user_name",
+      "referral_source",
+      "middle_initial",
+      "last_name",
+      "suffix",
+      "service_line",
+      "created_by_user_id",
+      "client_id",
+      "discriminator",
+      "employee_type",
+      "email_address",
+      "user_id",
+      "created_on_datetime",
+      "updated_on_datetime",
+      "name",
+      "preferred_organizational_unit",
+      "phone_number",
+      "salutation",
+      "first_name",
+      "preferred_room_type",
+      "grooming_difficulty",
+      "pet_type",
+      "customer_first_name",
+      "sex",
+      "birth_date",
+      "veterinary_hospital",
+      "weight_ozs",
+      "breed",
+      "shed_x_club",
+      "personality_type",
+      "customer_last_name",
+      "customer_name",
+      "customer_id",
+      "pet_color",
+      "weight_lbs",
+      "pet_id",
+      "id"
+    ],
+    "sortFields": [
+  
+    ],
+    "facets": [
+  
+    ]
+  }
+  
