@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
+import {InputBase, Autocomplete} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { IoFilterSharp } from "react-icons/io5";
@@ -18,6 +18,7 @@ import {
   SearchProvider,
   SearchBox,
   Results,
+  Result,
   PagingInfo,
   ResultsPerPage,
   Paging,
@@ -54,7 +55,7 @@ const config = {
 };
 
 export default function SearchUI() {
-  const [searchTerm, setSearchTerm] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <>
@@ -62,16 +63,19 @@ export default function SearchUI() {
       <WithSearch 
       mapContextToProps={({ wasSearched, searchTerm, setSearchTerm, results }) => ({ wasSearched, searchTerm, setSearchTerm, results })}>
         {({ wasSearched, searchTerm, setSearchTerm, results }) => {
+          console.log(results)
           return (
             <div className="App">
               <ErrorBoundary>
                 <Layout
-                  header={      
+                  header={  
+                    <>    
                     <Paper
                         className="main-search"
                         component="form"
-                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', height: '2rem', width: 400 }}
+                        sx={{ p: '2px 4px', display: 'flex', flexDirection: 'column', alignItems: 'center', maxHeight: 400,  width: 400, overflow: 'auto' }}
                     >
+                      <div>
                         <IconButton sx={{ p: '10px' }} aria-label="menu">
                             <SearchIcon />
                         </IconButton>
@@ -85,36 +89,51 @@ export default function SearchUI() {
                         <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
                             <IoFilterSharp />
                         </IconButton>
+                        </div>
+                        <div>
+                          {wasSearched && results.map(result => (
+                              <div key={result.id.raw}>
+                                <span>Client Name: {result?.name?.raw}</span>
+                                
+                              </div>
+        
+                          ))}
+                        </div>
                     </Paper> 
+
+                    </>
                   }
-                  sideContent={
-                    <div>
-                      {wasSearched && (
-                        <Sorting
-                          label={"Sort by"}
-                          sortOptions={buildSortOptionsFromConfig()}
-                        />
-                      )}
-                      {getFacetFields().map(field => (
-                        <Facet key={field} field={field} label={field} />
-                      ))}
-                    </div>
-                  }
-                  bodyHeader={
-                    <React.Fragment>
-                      {wasSearched && <PagingInfo />}
-                      {wasSearched && <ResultsPerPage />}
-                    </React.Fragment>
-                  }
-                  bodyContent={
-                    <Results
-                      titleField={getConfig().titleField}
-                      urlField={getConfig().urlField}
-                      thumbnailField={getConfig().thumbnailField}
-                      shouldTrackClickThrough={true}
-                    />
-                  }
-                  bodyFooter={<Paging />}
+                  // sideContent={
+                  //   <div>
+                  //     {wasSearched && (
+                  //       <Sorting
+                  //         label={"Sort by"}
+                  //         sortOptions={buildSortOptionsFromConfig()}
+                  //       />
+                  //     )}
+                  //     {getFacetFields().map(field => (
+                  //       <Facet key={field} field={field} label={field} />
+                  //     ))}
+                  //   </div>
+                  // }
+                  // bodyHeader={
+                  //   <React.Fragment>
+                  //     {wasSearched && <PagingInfo />}
+                  //     {wasSearched && <ResultsPerPage />}
+                  //   </React.Fragment>
+                  // }
+                  // bodyContent={
+                  //   <Results
+                  //     titleField={getConfig().titleField}
+                  //     urlField={getConfig().urlField}
+                  //     thumbnailField={getConfig().thumbnailField}
+                  //     shouldTrackClickThrough={true}
+                  //     onChange={() => console.log(getFacetFields())}
+
+                  //   />
+
+                  // }
+                  // bodyFooter={<Paging />}
                 />
               </ErrorBoundary>
             </div>
