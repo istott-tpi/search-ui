@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SearchUI from './components/searchUI';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
-    {/* <SearchUI /> */}
+    <SearchUI />
   </React.StrictMode>,
   document.getElementById('root')
 );
